@@ -1,3 +1,6 @@
+#::: Akkadius
+#::: Build manifest text file for eqemu_update.pl
+
 use File::Find;
 
 open (QUEST_MANIFEST, '> quest_manifest.txt');
