@@ -10,8 +10,9 @@ find(
     $start_dir
 );
 for my $file (@files) {
-	print $file . "\n";
-	print PLUGIN_MANIFEST $file . "\n";
+	my $file_size = (stat $file)[7];
+	print $file . "," . $file_size . "\n";
+	print PLUGIN_MANIFEST $file . "," . $file_size . "\n";
 }
 
 my @files;
@@ -22,8 +23,9 @@ find(
 );
 for my $file (@files) {
 	if($file=~/lua|pl|ext/i){
-		print $file . "\n";
-		print QUEST_MANIFEST $file . "\n";
+		my $file_size = (stat $file)[7];
+		print $file . "," . $file_size . "\n";
+		print QUEST_MANIFEST $file . "," . $file_size . "\n";
 	}
 }
 
