@@ -5,16 +5,20 @@ function event_say(e)
 	if(e.other:KeyRingCheck(41000) or e.other:HasItem(41000)) then
 		if(e.message:findi("hail")) then
 			e.self:Say("Nice to see you, " .. e.other:GetName() .. ".  Am I safe in assuming you wish to travel today?  I do admire the adventurers that so willingly take the risk involved with this spell.  I enjoy knowing all of my hard work is not in vain.  There's only been a few unfortunate folk that haven't, uhm, been so lucky.  Frightful mess.  I'll be sure to be extra careful where you are concerned.  Honestly.  A dark elf's word is... Well, forget that.  He he.  Tell me where you would like to go and I will send you there.  I can send you to any of the other camps in [" .. eq.say_link("Butcherblock",false,"Butcherblock") .. "], [" .. eq.say_link("Commonlands",false,"Commonlands") .. "], [" .. eq.say_link("Everfrost",false,"Everfrost") .. "], [" .. eq.say_link("Nedaria's Landing",false,"Nedaria's Landing") .. "], or [" .. eq.say_link("North Ro",false,"North Ro") .. "].");
-		elseif(e.message:findi("commonlands")) then
-			e.self:CastSpell(4176,e.other:GetID(),0,1);
+		
 		elseif(e.message:findi("everfrost")) then
 			e.self:CastSpell(4180,e.other:GetID(),0,1);
 		elseif(e.message:findi("nedaria")) then
 			e.self:CastSpell(4580,e.other:GetID(),0,1);
-		elseif(e.message:findi("north ro")) then
-			e.self:CastSpell(4177,e.other:GetID(),0,1);
+		
 		elseif(e.message:findi("butcherblock")) then
 			e.self:CastSpell(4179,e.other:GetID(),0,1);
+
+		elseif(e.message:findi("north ro")) then
+      e.self:CastSpell(4177,e.other:GetID(),0,1);		 
+
+		elseif(e.message:findi("commonlands")) then
+			e.self:CastSpell(4176,e.other:GetID(),0,1);
 		end
 	else --no Adventurers Stone
 		if(e.message:findi("hail")) then

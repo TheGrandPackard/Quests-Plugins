@@ -10,9 +10,12 @@ sub EVENT_SPAWN {
 }
 
 sub EVENT_DEATH_COMPLETE {
-  if(($class eq "Bard") && ($qglobals{asentkill2} == 2)) {
+  if ( $status >= 80 ) {
     quest::spawn2(294628,0,0,$x,$y,$z,$h);
     }
+  elsif(($class eq "Bard") && ($qglobals{asentkill2} == 2)) {
+    quest::spawn2(294628,0,0,$x,$y,$z,$h);
+  }
   elsif(($class eq "Beastlord") && ($qglobals{asentkill2} == 2)) {
     quest::spawn2(294628,0,0,$x,$y,$z,$h);
   }
@@ -73,6 +76,7 @@ sub EVENT_DEATH_COMPLETE {
       quest::emote("The creature cannot stand up to the power of healers");
     }
   }
+  quest::signalwith(294614, 1, 0);
 }
 
 sub EVENT_HP {
