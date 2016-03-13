@@ -27,12 +27,34 @@ function event_say(e)
       { "Tacvi_ZMSB", "Tacvi: Zun`Muram Shaldn Boc" },
       { "Tacvi_ZMMD", "Tacvi: Zun`Muram Mordl Delt" },
       { "Tacvi_ZMYV", "Tacvi: Zun`Muram Yihst Vor" },   
-      { "Tacvi_TMCV", "Tacvi: Tunat`Muram Cuu Vauax" }
+      { "Tacvi_TMCV", "Tacvi: Tunat`Muram Cuu Vauax" },
+      { "LDON_rujg", "LDoN Raid: Rujarkian Hills: Hidden Vale of Deceit"},
+      { "LDON_mmcc", "LDoN Raid: Mistmoore Catacombs: Struggles within the Progeny"},
+      { "LDON_takc", "LDoN Raid: Takish-Hiz: Within the Compact" },
+      { "LDON_gukg", "LDoN Raid: Deepest Guk: Ritualist of Hate"},
+      { "MPG_fear", "MPG: The Mastery of Fear"},
+      { "MPG_weaponry", "MPG: The Mastery of Weaponry"},
+      { "MPG_subversion", "MPG: The Mastery of Subversion"},
+      { "MPG_efficiency", "MPG: The Mastery of Efficiency"},
+      { "MPG_ingenuity", "MPG: The Mastery of Ingenuity"},
+      { "MPG_destruction", "MPG: The Mastery of Destruction"}
+
 		}
 
 	if(e.message:findi("hail")) then
-		e.other:Message(257, "Would you like to know your [" .. eq.say_link("Lockouts",false,"Lockouts") .. "]?")
+		e.other:Message(257, "Would you like to know your [" .. eq.say_link("Lockouts",false,"Lockouts") .. "] or fix your [" ..eq.say_link('skills', false, 'skills') .. "] ?")
 	elseif(e.message:findi("lockouts")) then
 		instance_requests.DisplayLockouts(e.other, e.other, lockout_globals)
+  elseif(e.message:findi("skills")) then
+
+    -- See the global/global_player.lua for the reference index for these values
+    local free_skills =  {0,1,2,3,4,5,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,28,29,30,31,32,33,34,36,37,38,39,41,42,43,44,45,46,47,49,51,52,54,67,70,71,72,73,74,76};
+
+    for k,v in ipairs(free_skills) do
+      if ( e.other:MaxSkill(v) > 0 and e.other:GetRawSkill(v) < 1 and e.other:CanHaveSkill(v) ) then 
+        e.other:SetSkill(v, 1);
+      end
+        
+    end
 	end
 end
